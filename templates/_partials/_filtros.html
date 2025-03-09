@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-between align-items-rightr">
+  <div class="btn-group">
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Filtros de pesquisa...
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a
+            class="dropdown-item"
+            href="{% url 'sort_and_order_recipes' 'name' %}"
+            >Por ordem alfabética</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{% url 'sort_and_order_recipes' 'rating' %}"
+            >Por Maior avaliação</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{% url 'sort_and_order_recipes' 'difficulty' %}"
+            >Por dificuldade</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{% url 'sort_and_order_recipes' 'cookTimeMinutes' %}"
+            >Por tempo de preparo (menor p/ maior)</a
+          >
+        </li>
+      </ul>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Tags
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          {% for tag in tags %}
+            <a
+              class="dropdown-item"
+              href="{% url 'get_recipes_by_tag' tag %}"
+              >{{ tag }}</a
+            >
+          {% endfor %}
+        </li>
+      </ul>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <form action="{% url 'search_recipes' %}">
+      <div class="input-group mb-3">
+        <input
+          placeholder=" Pesquisar receitas"
+          type="text"
+          class="form-control"
+          name="search"
+          aria-label="Recipient's username"
+          aria-describedby="button-addon2"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-success" type="submit" id="button-addon2">
+            Pesquisar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

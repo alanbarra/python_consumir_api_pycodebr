@@ -1,0 +1,71 @@
+{% extends '_shared/base.html' %} 
+{% load static %} {% block content %} 
+{% include '_partials/_navbar.html' %}
+
+<div class="container">
+
+  {% if recipes %}
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      {% include '_partials/_filtros.html' %}
+
+      <hr class="featurette-divider">
+
+      </br>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for recipe in recipes %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img
+              src="{{ recipe.image }}"
+              class="i{{ recipe.name }}"
+              alt="{{ recipe.name }}"
+            />
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.name | upper }}</h3>
+                    
+              <b>{{ recipe.cuisine | upper }}</b>
+
+                </br></br>
+
+              <p class="card-text">Tempo de preparo: <b>{{ recipe.cookTimeMinutes }} min</b></p>
+              <p class="card-text">Serve até <b>{{ recipe.servings }} pessoas</b></p>
+              <p class="card-text">Dificuldade <b>{{ recipe.difficulty }}</b></p>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a
+                    href="{% url 'recipe' recipe.id %}"
+                    class="btn btn-outline-secondary"
+                    role="button"
+                    >Modo de preparo</a
+                  >
+                </div>
+                <b><small class="text-body-secondary">Nota: {{ recipe.rating }}</small></b>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      </br>
+
+      <hr class="featurette-divider">
+
+      <a href="{% url 'recipes' %}" class="btn btn-success" role="button">Mais receitas</a>
+
+    </div>
+  </div>
+
+  {% else %}
+  <div>
+    <p>Sem receitas cadastradas</p>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

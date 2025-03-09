@@ -1,0 +1,64 @@
+{% extends '_shared/base.html' %} 
+{% load static %} {% block content %} 
+{% include '_partials/_navbar.html' %}
+
+<div class="container">
+
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+
+            {% include '_partials/_filtros.html' %}
+
+            <hr class="featurette-divider">
+
+            <h1>{{ recipe.name | upper }}</h1>
+
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h3 class="featurette-heading fw-normal lh-1"><b>Ingredientes:</b></h3>
+                    <p class="lead">
+                        {% for ingredient in recipe.ingredients %}
+                            {{ ingredient }}
+                        {% endfor %}
+                    </p>
+                    <h3 class="featurette-heading fw-normal lh-1"><b>Modo de preparo:</b></h3>
+                    <p class="lead" align="justify">
+                        {% for instruction in recipe.instructions %}
+                            {{ instruction }}
+                        {% endfor %}
+                    </p>
+                    <h3 class="featurette-heading fw-normal lh-1"><b>Tags:</b></h3>
+                    <p class="lead">
+                        {% for tag in recipe.tags %}
+                            <a href="{% url 'get_recipes_by_tag' tag %}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{ tag }}</a>
+                        {% endfor %}
+                    </p>
+                    <h3 class="featurette-heading fw-normal lh-1"><b>Tipo de refeição:</b></h3>
+                    <p class="lead">
+                        {% for mealType in recipe.mealType %}
+                            <a href="{% url 'get_recipes_by_meal_type' mealType %}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">{{ mealType }}</a>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img
+                        src="{{ recipe.image }}"
+                        class="i{{ recipe.name }}"
+                        alt="{{ recipe.name }}"
+                        width="500" height="500"
+                    />
+                </div>
+            </div>
+
+            </br>
+
+            <hr class="featurette-divider">
+
+            <a href="{% url 'recipes' %}" class="btn btn-success" role="button">Mais receitas</a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
