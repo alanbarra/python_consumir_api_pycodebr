@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #
     'apps.home.apps.HomeConfig',
     'apps.recipes.apps.RecipesConfig',
+    'apps.rickandmorty.apps.RickandmortyConfig',
 ]
 
 MIDDLEWARE = [

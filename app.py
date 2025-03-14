@@ -2,6 +2,7 @@ from services.feriado import FeriadoService
 from services.cep import CepService
 from services.product import ProductService
 from services.recipe import RecipeService
+from services.rickandmorty import RickAndMortyService
 
 #------------------------------ Consulta Feriados --------
 #dados = {
@@ -146,3 +147,12 @@ from services.recipe import RecipeService
 #service = RecipeService()
 #get_recipes_by_meal_type = service.get_recipes_by_meal_type(meal_type)
 #print(get_recipes_by_meal_type)
+
+#service = RickAndMortyService()
+#get_all_characters = service.get_all_characters()
+#print(get_all_characters)
+
+character_id = 50
+service = RickAndMortyService()
+get_character = service.get_character(character_id)
+print(get_character)
